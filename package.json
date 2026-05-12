@@ -1,0 +1,21 @@
+{
+  "name": "cypress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:frontend": "cypress run --spec 'cypress/e2e/frontend/**/*.cy.js'",
+    "cy:api": "cypress run --spec 'cypress/e2e/api/**/*.cy.js'",
+    "cy:report": "cypress run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^10.4.0",
+    "cypress": "^12.17.4",
+    "cypress-mochawesome-reporter": "^4.0.2"
+  }
+}

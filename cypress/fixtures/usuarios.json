@@ -1,0 +1,14 @@
+{
+  "admin": {
+    "nome": "Admin Teste",
+    "email": "admin_cypress@qa.com.br",
+    "password": "teste@123",
+    "administrador": "true"
+  },
+  "comum": {
+    "nome": "Usuario Comum",
+    "email": "usuario_cypress@qa.com.br",
+    "password": "teste@123",
+    "administrador": "false"
+  }
+}

@@ -1,0 +1,69 @@
+name: Cypress Tests
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  pull_request:
+    branches:
+      - master
+      - main
+  workflow_dispatch:
+
+jobs:
+  cypress-api:
+    name: Testes de API
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Instalar dependências e rodar testes de API
+        uses: cypress-io/github-action@v6
+        with:
+          command: npm run cy:api
+
+      - name: Upload relatório de testes
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: relatorio-api
+          path: cypress/reports/
+          retention-days: 7
+
+      - name: Upload screenshots de falha
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: screenshots-api
+          path: cypress/screenshots/
+          retention-days: 7
+
+  cypress-frontend:
+    name: Testes de Frontend
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Instalar dependências e rodar testes de Frontend
+        uses: cypress-io/github-action@v6
+        with:
+          command: npm run cy:frontend
+
+      - name: Upload relatório de testes
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: relatorio-frontend
+          path: cypress/reports/
+          retention-days: 7
+
+      - name: Upload screenshots de falha
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: screenshots-frontend
+          path: cypress/screenshots/
+          retention-days: 7

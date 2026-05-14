@@ -1,14 +1,12 @@
+import { FRONTEND_MESSAGES as MSG } from '../constants/messages'
+
 class CadastroPage {
-  // Selectors
   get nomeInput()       { return cy.get('[data-testid="nome"]') }
   get emailInput()      { return cy.get('[data-testid="email"]') }
   get passwordInput()   { return cy.get('[data-testid="password"]') }
   get adminCheckbox()   { return cy.get('[data-testid="checkbox"]') }
   get cadastrarButton() { return cy.get('[data-testid="cadastrar"]') }
-  get validacaoObrig()  { return cy.contains('é obrigatório') }
-  get erroEmailDupl()   { return cy.contains('Este email já está sendo usado') }
 
-  // Actions
   visitar() {
     cy.visit('/cadastrarusuarios')
     return this
@@ -51,15 +49,17 @@ class CadastroPage {
   // Assertions
   deveRedirecionarParaHomeStore() {
     cy.url().should('include', '/home')
-    cy.contains('Serverest Store').should('be.visible')
+    cy.contains(MSG.STORE_HOME).should('be.visible')
   }
 
   deveExibirErroEmailDuplicado() {
-    this.erroEmailDupl.should('be.visible')
+    cy.contains(MSG.EMAIL_JA_USADO).should('be.visible')
   }
 
-  deveExibirValidacaoObrigatoria() {
-    this.validacaoObrig.should('be.visible')
+  deveExibirValidacaoDeCamposObrigatorios() {
+    cy.contains(MSG.NOME_OBRIGATORIO).should('be.visible')
+    cy.contains(MSG.EMAIL_OBRIGATORIO).should('be.visible')
+    cy.contains(MSG.PASSWORD_OBRIGATORIO).should('be.visible')
   }
 }
 

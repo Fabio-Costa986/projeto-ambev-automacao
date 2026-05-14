@@ -1,19 +1,17 @@
 class CadastroProdutoPage {
-  // Selectors
   get nomeInput()       { return cy.get('[data-testid="nome"]') }
   get precoInput()      { return cy.get('[data-testid="preco"]') }
   get descricaoInput()  { return cy.get('[data-testid="descricao"]') }
   get quantidadeInput() { return cy.get('[data-testid="quantity"]') }
   get cadastrarButton() { return cy.get('[data-testid="cadastarProdutos"]') }
 
-  // Actions
   preencherNome(nome) {
     this.nomeInput.type(nome)
     return this
   }
 
   preencherPreco(preco) {
-    this.precoInput.type(preco)
+    this.precoInput.type(String(preco))
     return this
   }
 
@@ -23,7 +21,7 @@ class CadastroProdutoPage {
   }
 
   preencherQuantidade(quantidade) {
-    this.quantidadeInput.type(quantidade)
+    this.quantidadeInput.type(String(quantidade))
     return this
   }
 

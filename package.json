@@ -8,12 +8,16 @@
     "cy:run": "cypress run",
     "cy:frontend": "cypress run --spec 'cypress/e2e/frontend/**/*.cy.js'",
     "cy:api": "cypress run --spec 'cypress/e2e/api/**/*.cy.js'",
-    "cy:report": "cypress run"
+    "cy:report": "cypress run",
+    "cy:smoke": "cypress run --env grepTags=@smoke",
+    "cy:critical": "cypress run --env grepTags=@critical",
+    "cy:regression": "cypress run --env grepTags=@regression"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@cypress/grep": "^3.1.5",
     "@faker-js/faker": "^10.4.0",
     "cypress": "^12.17.4",
     "cypress-mochawesome-reporter": "^4.0.2"

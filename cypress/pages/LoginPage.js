@@ -1,12 +1,10 @@
-class LoginPage {
-  // Selectors
-  get emailInput()    { return cy.get('[data-testid="email"]') }
-  get senhaInput()    { return cy.get('[data-testid="senha"]') }
-  get entrarButton()  { return cy.get('[data-testid="entrar"]') }
-  get erroMessage()   { return cy.contains('Email e/ou senha inválidos') }
-  get validacaoObrig(){ return cy.contains('é obrigatório') }
+import { FRONTEND_MESSAGES as MSG } from '../constants/messages'
 
-  // Actions
+class LoginPage {
+  get emailInput()   { return cy.get('[data-testid="email"]') }
+  get senhaInput()   { return cy.get('[data-testid="senha"]') }
+  get entrarButton() { return cy.get('[data-testid="entrar"]') }
+
   visitar() {
     cy.visit('/login')
     return this
@@ -34,16 +32,17 @@ class LoginPage {
   // Assertions
   deveEstarNaHome() {
     cy.url().should('include', '/home')
-    cy.contains('Bem Vindo').should('be.visible')
+    cy.contains(MSG.BEM_VINDO).should('be.visible')
   }
 
   deveExibirErroDeCredenciais() {
-    this.erroMessage.should('be.visible')
+    cy.contains(MSG.LOGIN_INVALIDO).should('be.visible')
     cy.url().should('include', '/login')
   }
 
-  deveExibirValidacaoObrigatoria() {
-    this.validacaoObrig.should('be.visible')
+  deveExibirValidacaoDeCampoObrigatorio() {
+    cy.contains(MSG.EMAIL_OBRIGATORIO).should('be.visible')
+    cy.contains(MSG.PASSWORD_LOGIN_OBRIG).should('be.visible')
   }
 }
 
